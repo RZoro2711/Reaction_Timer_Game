@@ -1,7 +1,6 @@
 <template>
     <div v-if="showTime">
-    <div class="block">Click Here</div>
-
+        <div class="block" @click="stopTimer">Click Here</div>
     </div>
 </template>
 
@@ -11,13 +10,27 @@ props : ['delay'],
 data(){
     return{
         showTime : false,
+        score : 0,
+        timer : null,
     }
 },
 mounted(){
     setTimeout(() => {
         this.showTime = true;
+        this.startTimer();
     }, this.delay);
 },
+methods:{
+    startTimer(){
+        this.timer = setInterval(() => {
+            this.score += 50
+        }, 50);
+    },
+    stopTimer(){
+        clearInterval(this.timer);
+        console.log(this.score);
+    }
+}
 }
 </script>
 
