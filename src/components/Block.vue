@@ -28,7 +28,7 @@ methods:{
     },
     stopTimer(){
         clearInterval(this.timer);
-        console.log(this.score);
+        this.$emit("endgame", this.score)
     }
 }
 }
