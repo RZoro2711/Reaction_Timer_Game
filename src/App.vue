@@ -1,26 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h3>How fast can you catch me ?</h3>
+  <button @click="start" :disabled="isplaying">Start</button>
+  <div v-if="isplaying">
+    <Block :delay="delay"/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Block from "./components/Block.vue"
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  components: { Block },
+  data(){
+    return{
+      isplaying : false,
+      delay : null,
+    }
+  },
+  methods:{
+    start(){
+      this.isplaying = true;
+      this.delay = 2000+Math.random()*5000;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ h3{
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+ }
+ button{
+  display: block;
+  margin: auto;
+ }
 </style>
